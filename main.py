@@ -63,7 +63,7 @@ def main(event, context):
     file = event
     print(f"Entering transcoding of file {file['name']}")
 
-    if 'transcode_bucket_name' in file['metadata']:
+    if 'metadata' in file and 'transcode_bucket_name' in file['metadata']:
         transcode_bucket_name = file['metadata']['transcode_bucket_name']
     else:
         transcode_bucket_name = file['bucket']
@@ -89,8 +89,4 @@ def main_function_wrapper(event, context):
          context (google.cloud.functions.Context): Metadata for the event.
     """
     print(type(event))
-    try:
-        return main(event, context)
-    except KeyError as e:
-        print("There was a KeyError apparently....")
-        print(e)
+    return main(event, context)
