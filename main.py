@@ -52,12 +52,12 @@ def connect_client(upload_bucket_name, transcode_bucket_name):
     return client.get_bucket(upload_bucket_name), client.get_bucket(transcode_bucket_name)
 
 
-def upload_file(upload_bucket, file_path):
+def upload_file(upload_bucket, file_path, file_key):
     """
     :type upload_client: storage.Client
     :type file_path: str
     """
-    upload_filename = "snrnewsbulletin-" + datetime.now().isoformat() + ".aac"
+    upload_filename = str.replace(file_key,".mp3",".aac")
     upload_blob = storage.blob.Blob(upload_filename, upload_bucket)
     upload_blob.upload_from_filename(file_path, content_type="audio/aac")
 
@@ -101,7 +101,7 @@ def main(event, context):
         log_error("Error in outputting transcoded file", "Error: output_file_path is NoneType")
         quit(5)
 
-    upload_file(transcode_bucket, output_file_path)
+    upload_file(transcode_bucket, output_file_path, file['name'])
 
     return "Function Completed"
 
