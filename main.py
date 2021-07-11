@@ -84,6 +84,10 @@ def main(event, context):
 
     if 'metadata' in file and 'transcode_bucket_name' in file['metadata']:
         transcode_bucket_name = file['metadata']['transcode_bucket_name']
+        log_trace("Result Bucket set in metadata, transcode bucket set to", transcode_bucket_name)
+    elif os.getenv("TRANSCODE_BUCKET"):
+        transcode_bucket_name = os.getenv("TRANSCODE_BUCKET")
+        log_trace(f"No Bucket set in metadata, using environment var instead, transcode bucket: {transcode_bucket_name}")
     else:
         transcode_bucket_name = file['bucket']
 
