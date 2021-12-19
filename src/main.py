@@ -6,6 +6,7 @@ from src.object_storage import upload_file, connect_client, download_from_storag
 
 global_log_fields = {}
 
+
 def run_transcode(input_filepath, output_filepath=""):
     try:
         log_trace(f"input file size {os.stat(input_filepath).st_size} bytes")
