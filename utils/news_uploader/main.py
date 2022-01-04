@@ -34,7 +34,7 @@ def upload_file(filepath, objectname, bucket):
 
 
 def generate_objectname(prefix, postfix):
-    timestring = datetime.date.today().strftime("%Y-%m-%dH%H%z")
+    timestring = datetime.datetime.now().strftime("%Y-%m-%dH%H%z")
     return prefix + timestring + postfix
 
 
