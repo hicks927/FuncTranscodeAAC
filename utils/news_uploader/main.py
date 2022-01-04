@@ -56,7 +56,7 @@ def dl_procedure():
             bucket_name = sys.argv[2]
 
     elif os.getenv("SCRIPT_DOWNLOAD_LINK"):
-        download_link = sys.argv[1]
+        download_link = os.getenv("SCRIPT_DOWNLOAD_LINK")
 
     else:
         print("No Valid download link provided")
