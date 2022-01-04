@@ -43,6 +43,10 @@ def download_file(dl_link):
     return temp_filepath
 
 
+def pubsub_entry(event, context):
+    dl_procedure()
+
+
 def dl_procedure():
     bucket_name = "default"
 
